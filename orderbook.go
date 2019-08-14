@@ -30,5 +30,6 @@ func (c *Client) GetOrderbook(sym string) (*Orderbook, error) {
 	url := EPMarketbook + instr.ID
 	var r Orderbook
 	err = c.GetAndDecode(url, &r)
+	r.Symbol = sym
 	return &r, err
 }

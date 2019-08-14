@@ -25,7 +25,9 @@ func TestOrderbook(t *testing.T) {
 	asrt.NoError(err)
 	asrt.NotNil(c)
 
-	ob, err := c.GetOrderbook("SPY")
+	sym := "SPY"
+	ob, err := c.GetOrderbook(sym)
+	asrt.Equal(sym, ob.Symbol)
 	asrt.NoError(err)
 
 	spew.Dump(ob)
