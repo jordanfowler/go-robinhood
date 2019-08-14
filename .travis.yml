@@ -1,5 +1,5 @@
 language: go
-go_import_path: astuart.co/go-robinhood
+go_import_path: jordanfowler.co/go-robinhood
 
 matrix:
   allow_failures:
