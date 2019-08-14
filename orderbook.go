@@ -3,9 +3,10 @@ package robinhood
 // Orderbook is a representation of the data returned by the Robinhood Gold API for
 // Nasdaq Level II bid/ask order book data
 type Orderbook struct {
-	Symbol string  `json:"symbol"`
-	Asks   []Order `json:"asks"`
-	Bids   []Order `json:"bids"`
+	InstrumentID string  `json:"instrument_id"`
+	Symbol       string  `json:"symbol"`
+	Asks         []Order `json:"asks"`
+	Bids         []Order `json:"bids"`
 }
 
 // Order represents a single order in an Orderbook
@@ -27,9 +28,9 @@ func (c *Client) GetOrderbook(sym string) (*Orderbook, error) {
 	if err != nil {
 		return nil, err
 	}
-	url := EPMarketbook + instr.ID
+	url := EPMarketbook + instr.ID + "/"
 	var r Orderbook
 	err = c.GetAndDecode(url, &r)
-	r.Symbol = sym
+	r.Symbol = instr.Symbol
 	return &r, err
 }
